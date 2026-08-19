@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIMWALAS DM QR Scanner</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="logo">DM</div>
+      <div>
+        <p>SMPIT DARUL MUTTAQIEN</p>
+        <h1>SIMWALAS DM</h1>
+        <span>QR Attendance Scanner</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <label>Apps Script Web App URL</label>
+      <input id="gasUrl" placeholder="https://script.google.com/macros/s/AKfycbxOw3XczDGePWBhOJym496MeFh6h0lDqg-8J9g0mtmFe19P3P4nSqwZ9yYg4szqPXQ3Dw/exec">
+
+      <label>Scan Token Guru/Walas</label>
+      <input id="scanToken" type="password" placeholder="Token scanner">
+
+      <button onclick="saveConfig()">Simpan Konfigurasi</button>
+      <button class="secondary" onclick="loadSchedules()">Muat Jadwal</button>
+    </section>
+
+    <section class="card">
+      <label>Jadwal/Sesi</label>
+      <select id="scheduleId"></select>
+
+      <div class="actions">
+        <button onclick="startCamera()">Mulai Kamera</button>
+        <button class="secondary" onclick="stopCamera()">Stop</button>
+      </div>
+
+      <video id="video" muted playsinline></video>
+
+      <label>Atau upload gambar QR</label>
+      <input id="qrImage" type="file" accept="image/*" onchange="decodeImageQr()">
+
+      <label>Atau tempel payload QR</label>
+      <textarea id="qrPayload" rows="4" placeholder='{"qrId":"...","token":"..."}'></textarea>
+
+      <button onclick="submitManualPayload()">Simpan Absensi QR</button>
+    </section>
+
+    <section id="result" class="result hidden"></section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
